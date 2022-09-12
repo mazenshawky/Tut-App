@@ -45,11 +45,12 @@ ThemeData getApplicationTheme(){
     ),
     // text theme
     textTheme: TextTheme(
-      displayLarge: getLightStyle(fontSize: FontSize.s22, color: ColorManager.white),
-      headline1: getSemiBoldStyle(fontSize: FontSize.s16, color: ColorManager.darkGrey),
-      subtitle1: getMediumStyle(fontSize: FontSize.s14, color: ColorManager.lightGrey),
-      caption: getRegularStyle(color: ColorManager.grey1),
-      bodyText1: getRegularStyle(color: ColorManager.grey),
+      displayLarge: getSemiBoldStyle(fontSize: FontSize.s16, color: ColorManager.darkGrey),
+      headlineLarge: getSemiBoldStyle(fontSize: FontSize.s16, color: ColorManager.darkGrey),
+      headlineMedium: getRegularStyle(fontSize: FontSize.s14, color: ColorManager.darkGrey),
+      titleMedium: getMediumStyle(fontSize: FontSize.s16, color: ColorManager.primary),
+      bodyLarge: getRegularStyle(color: ColorManager.grey1),
+      bodySmall: getRegularStyle(color: ColorManager.grey),
     ),
     // input decoration theme(text form field)
     inputDecorationTheme: InputDecorationTheme(
