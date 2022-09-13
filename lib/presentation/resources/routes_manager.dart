@@ -1,7 +1,7 @@
 import 'package:advanced_app/presentation/forgot_password/forgot_password_view.dart';
 import 'package:advanced_app/presentation/login/login_view.dart';
 import 'package:advanced_app/presentation/main/main_view.dart';
-import 'package:advanced_app/presentation/onboarding/onboarding_view.dart';
+import 'package:advanced_app/presentation/onboarding/view/onboarding_view.dart';
 import 'package:advanced_app/presentation/register/register_view.dart';
 import 'package:advanced_app/presentation/resources/strings_manager.dart';
 import 'package:advanced_app/presentation/splash/splash_view.dart';
