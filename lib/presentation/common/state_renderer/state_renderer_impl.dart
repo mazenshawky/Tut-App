@@ -8,8 +8,8 @@ abstract class FlowState {
 
   String getMessage();
 }
-
 // loading state (POPUP,FULL SCREEN)
+
 class LoadingState extends FlowState {
   StateRendererType stateRendererType;
   String? message;
@@ -39,6 +39,7 @@ class ErrorState extends FlowState {
 }
 
 // content state
+
 class ContentState extends FlowState {
   ContentState();
 
@@ -49,7 +50,8 @@ class ContentState extends FlowState {
   StateRendererType getStateRendererType() => StateRendererType.contentState;
 }
 
-// empty state
+// EMPTY STATE
+
 class EmptyState extends FlowState {
   String message;
 
@@ -61,6 +63,19 @@ class EmptyState extends FlowState {
   @override
   StateRendererType getStateRendererType() =>
       StateRendererType.fullScreenEmptyState;
+}
+
+// success state
+class SuccessState extends FlowState {
+  String message;
+
+  SuccessState(this.message);
+
+  @override
+  String getMessage() => message;
+
+  @override
+  StateRendererType getStateRendererType() => StateRendererType.popupSuccessState;
 }
 
 extension FlowStateExtension on FlowState {
@@ -77,8 +92,8 @@ extension FlowStateExtension on FlowState {
           } else {
             // full screen loading state
             return StateRenderer(
-                stateRendererType: getStateRendererType(),
                 message: getMessage(),
+                stateRendererType: getStateRendererType(),
                 retryActionFunction: retryActionFunction);
           }
         }
@@ -93,8 +108,8 @@ extension FlowStateExtension on FlowState {
           } else {
             // full screen error state
             return StateRenderer(
-                stateRendererType: getStateRendererType(),
                 message: getMessage(),
+                stateRendererType: getStateRendererType(),
                 retryActionFunction: retryActionFunction);
           }
         }
@@ -103,11 +118,20 @@ extension FlowStateExtension on FlowState {
           return StateRenderer(
               stateRendererType: getStateRendererType(),
               message: getMessage(),
-              retryActionFunction: (){});
+              retryActionFunction: () {});
         }
       case ContentState:
         {
           dismissDialog(context);
+          return contentScreenWidget;
+        }
+      case SuccessState:
+        {
+          dismissDialog(context);
+          // show popup
+          showPopup(context, StateRendererType.popupSuccessState, getMessage(),
+              title: AppStrings.success);
+          // return content ui of the screen
           return contentScreenWidget;
         }
       default:
@@ -120,20 +144,22 @@ extension FlowStateExtension on FlowState {
 
   _isCurrentDialogShowing(BuildContext context) =>
       ModalRoute.of(context)?.isCurrent != true;
-  
-  dismissDialog(BuildContext context){
-    if(_isCurrentDialogShowing(context)){
+
+  dismissDialog(BuildContext context) {
+    if (_isCurrentDialogShowing(context)) {
       Navigator.of(context, rootNavigator: true).pop(true);
     }
   }
 
-  showPopup(BuildContext context, StateRendererType stateRendererType,
-      String message) {
+  showPopup(
+      BuildContext context, StateRendererType stateRendererType, String message,
+      {String title = Constants.empty}) {
     WidgetsBinding.instance.addPostFrameCallback((_) => showDialog(
         context: context,
         builder: (BuildContext context) => StateRenderer(
             stateRendererType: stateRendererType,
             message: message,
+            title: title,
             retryActionFunction: () {})));
   }
 }

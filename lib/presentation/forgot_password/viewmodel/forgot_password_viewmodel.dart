@@ -5,6 +5,7 @@ import 'package:advanced_app/domain/usecase/forgot_password_usecase.dart';
 import 'package:advanced_app/presentation/base/baseviewmodel.dart';
 import 'package:advanced_app/presentation/common/state_renderer/state_renderer.dart';
 import 'package:advanced_app/presentation/common/state_renderer/state_renderer_impl.dart';
+import 'package:advanced_app/presentation/resources/strings_manager.dart';
 
 class ForgotPasswordViewModel extends BaseViewModel
     with ForgotPasswordViewModelInputs, ForgotPasswordViewModelOutputs {
@@ -47,7 +48,7 @@ class ForgotPasswordViewModel extends BaseViewModel
               inputState.add(ErrorState(
                   StateRendererType.popupErrorState, failure.message))
             }, (supportMessage) {
-      inputState.add(ContentState());
+      inputState.add(SuccessState(supportMessage));
     });
   }
 
