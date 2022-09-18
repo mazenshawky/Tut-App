@@ -1,5 +1,5 @@
 import 'package:advanced_app/app/di.dart';
-import 'package:advanced_app/presentation/forgot_password/forgot_password_view.dart';
+import 'package:advanced_app/presentation/forgot_password/view/forgot_password_view.dart';
 import 'package:advanced_app/presentation/login/view/login_view.dart';
 import 'package:advanced_app/presentation/main/main_view.dart';
 import 'package:advanced_app/presentation/onboarding/view/onboarding_view.dart';
@@ -33,6 +33,7 @@ class RouteGenerator{
       case Routes.onBoardingRoute:
         return MaterialPageRoute(builder: (_) => const OnBoardingView());
       case Routes.forgotPasswordRoute:
+        initForgotPasswordModule();
         return MaterialPageRoute(builder: (_) => const ForgotPasswordView());
       case Routes.mainRoute:
         return MaterialPageRoute(builder: (_) => const MainView());
