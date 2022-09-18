@@ -1,5 +1,5 @@
 import 'package:advanced_app/app/di.dart';
-import 'package:advanced_app/domain/usecase/login_usecase.dart';
+import 'package:advanced_app/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:advanced_app/presentation/login/viewmodel/login_viewmodel.dart';
 import 'package:advanced_app/presentation/resources/assets_manager.dart';
 import 'package:advanced_app/presentation/resources/color_manager.dart';
@@ -39,13 +39,21 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    return _getContentWidget();
+    return Scaffold(
+      backgroundColor: ColorManager.white,
+      body: StreamBuilder<FlowState>(
+        stream: _viewModel.outputState,
+        builder: (context, snapshot){
+          return snapshot.data
+              ?.getScreenWidget(context, _getContentWidget(), (){}) ??
+              _getContentWidget();
+        },
+      ),
+    );
   }
 
   Widget _getContentWidget(){
-    return Scaffold(
-      backgroundColor: ColorManager.white,
-      body: Container(
+    return Container(
         padding: const EdgeInsets.only(top: AppPadding.p100),
         child: SingleChildScrollView(
           child: Form(
@@ -155,8 +163,7 @@ class _LoginViewState extends State<LoginView> {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 
   @override
