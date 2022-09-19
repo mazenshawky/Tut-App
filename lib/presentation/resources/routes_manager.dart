@@ -3,7 +3,7 @@ import 'package:advanced_app/presentation/forgot_password/view/forgot_password_v
 import 'package:advanced_app/presentation/login/view/login_view.dart';
 import 'package:advanced_app/presentation/main/main_view.dart';
 import 'package:advanced_app/presentation/onboarding/view/onboarding_view.dart';
-import 'package:advanced_app/presentation/register/register_view.dart';
+import 'package:advanced_app/presentation/register/view/register_view.dart';
 import 'package:advanced_app/presentation/resources/strings_manager.dart';
 import 'package:advanced_app/presentation/splash/splash_view.dart';
 import 'package:advanced_app/presentation/store_details/store_details_view.dart';
@@ -29,6 +29,7 @@ class RouteGenerator{
         initLoginModule();
         return MaterialPageRoute(builder: (_) => const LoginView());
       case Routes.registerRoute:
+        initRegisterModule();
         return MaterialPageRoute(builder: (_) => const RegisterView());
       case Routes.onBoardingRoute:
         return MaterialPageRoute(builder: (_) => const OnBoardingView());
@@ -39,7 +40,6 @@ class RouteGenerator{
         return MaterialPageRoute(builder: (_) => const MainView());
       case Routes.storeDetailsRoute:
         return MaterialPageRoute(builder: (_) => const StoreDetailsView());
-
       default:
         return unDefinedRoute();
     }
