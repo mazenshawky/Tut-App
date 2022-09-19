@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'responses.g.dart';
 
-
 @JsonSerializable()
-class BaseResponse{
+class BaseResponse {
   @JsonKey(name: "status")
   int? status;
   @JsonKey(name: "message")
@@ -11,7 +11,7 @@ class BaseResponse{
 }
 
 @JsonSerializable()
-class CustomerResponse{
+class CustomerResponse {
   @JsonKey(name: "id")
   String? id;
   @JsonKey(name: "name")
@@ -24,12 +24,13 @@ class CustomerResponse{
   // from json
   factory CustomerResponse.fromJson(Map<String, dynamic> json) =>
       _$CustomerResponseFromJson(json);
-  // to json
+
+// to json
   Map<String, dynamic> toJson() => _$CustomerResponseToJson(this);
 }
 
 @JsonSerializable()
-class ContactsResponse{
+class ContactsResponse {
   @JsonKey(name: "phone")
   String? phone;
   @JsonKey(name: "email")
@@ -42,12 +43,13 @@ class ContactsResponse{
   // from json
   factory ContactsResponse.fromJson(Map<String, dynamic> json) =>
       _$ContactsResponseFromJson(json);
-  // to json
+
+// to json
   Map<String, dynamic> toJson() => _$ContactsResponseToJson(this);
 }
 
 @JsonSerializable()
-class AuthenticationResponse extends BaseResponse{
+class AuthenticationResponse extends BaseResponse {
   @JsonKey(name: "customer")
   CustomerResponse? customer;
   @JsonKey(name: "contacts")
@@ -58,20 +60,22 @@ class AuthenticationResponse extends BaseResponse{
   // from json
   factory AuthenticationResponse.fromJson(Map<String, dynamic> json) =>
       _$AuthenticationResponseFromJson(json);
-  // to json
+
+// to json
   Map<String, dynamic> toJson() => _$AuthenticationResponseToJson(this);
 }
 
 @JsonSerializable()
-class ForgotPasswordResponse extends BaseResponse{
-  @JsonKey(name: "support")
+class ForgotPasswordResponse extends BaseResponse {
+  @JsonKey(name: 'support')
   String? support;
 
   ForgotPasswordResponse(this.support);
 
-  // from json
+// toJson
+  Map<String, dynamic> toJson() => _$ForgotPasswordResponseToJson(this);
+
+//fromJson
   factory ForgotPasswordResponse.fromJson(Map<String, dynamic> json) =>
       _$ForgotPasswordResponseFromJson(json);
-  // to json
-  Map<String, dynamic> toJson() => _$ForgotPasswordResponseToJson(this);
 }

@@ -1,11 +1,11 @@
 import 'package:advanced_app/data/network/failure.dart';
 import 'package:dio/dio.dart';
 
-class ErrorHandler implements Exception{
+class ErrorHandler implements Exception {
   late Failure failure;
 
-  ErrorHandler.handle(dynamic error){
-    if(error is DioError){
+  ErrorHandler.handle(dynamic error) {
+    if (error is DioError) {
       // dio error so its an error from response of the API or from dio itself
       failure = _handleError(error);
     } else {
@@ -14,8 +14,9 @@ class ErrorHandler implements Exception{
     }
   }
 }
-Failure _handleError(DioError error){
-  switch(error.type){
+
+Failure _handleError(DioError error) {
+  switch (error.type) {
     case DioErrorType.connectTimeout:
       return DataSource.CONNECT_TIMEOUT.getFailure();
     case DioErrorType.sendTimeout:
@@ -23,13 +24,15 @@ Failure _handleError(DioError error){
     case DioErrorType.receiveTimeout:
       return DataSource.RECIEVE_TIMEOUT.getFailure();
     case DioErrorType.response:
-      if(error.response != null && error.response?.statusCode != null && error.response?.statusMessage != null) {
-        return Failure(error.response!.statusCode! ,
-            error.response!.statusMessage!);
+      if (error.response != null &&
+          error.response?.statusCode != null &&
+          error.response?.statusMessage != null) {
+        return Failure(error.response?.statusCode ?? 0,
+            error.response?.statusMessage ?? "");
       } else {
         return DataSource.DEFAULT.getFailure();
       }
-    case DioErrorType.cancel:
+      case DioErrorType.cancel:
       return DataSource.CANCEL.getFailure();
     case DioErrorType.other:
       return DataSource.DEFAULT.getFailure();
@@ -41,7 +44,7 @@ enum DataSource {
   NO_CONTENT,
   BAD_REQUEST,
   FORBIDDEN,
-  UNAUTHORIZED,
+  UNAUTORISED,
   NOT_FOUND,
   INTERNAL_SERVER_ERROR,
   CONNECT_TIMEOUT,
@@ -50,7 +53,7 @@ enum DataSource {
   SEND_TIMEOUT,
   CACHE_ERROR,
   NO_INTERNET_CONNECTION,
-  DEFAULT,
+  DEFAULT
 }
 
 extension DataSourceExtension on DataSource {
@@ -64,8 +67,8 @@ extension DataSourceExtension on DataSource {
         return Failure(ResponseCode.BAD_REQUEST, ResponseMessage.BAD_REQUEST);
       case DataSource.FORBIDDEN:
         return Failure(ResponseCode.FORBIDDEN, ResponseMessage.FORBIDDEN);
-      case DataSource.UNAUTHORIZED:
-        return Failure(ResponseCode.UNAUTHORIZED, ResponseMessage.UNAUTHORIZED);
+      case DataSource.UNAUTORISED:
+        return Failure(ResponseCode.UNAUTORISED, ResponseMessage.UNAUTORISED);
       case DataSource.NOT_FOUND:
         return Failure(ResponseCode.NOT_FOUND, ResponseMessage.NOT_FOUND);
       case DataSource.INTERNAL_SERVER_ERROR:
@@ -87,8 +90,7 @@ extension DataSourceExtension on DataSource {
         return Failure(ResponseCode.NO_INTERNET_CONNECTION,
             ResponseMessage.NO_INTERNET_CONNECTION);
       case DataSource.DEFAULT:
-        return Failure(ResponseCode.DEFAULT,
-            ResponseMessage.DEFAULT);
+        return Failure(ResponseCode.DEFAULT, ResponseMessage.DEFAULT);
     }
   }
 }
@@ -97,7 +99,7 @@ class ResponseCode {
   static const int SUCCESS = 200; // success with data
   static const int NO_CONTENT = 201; // success with no data (no content)
   static const int BAD_REQUEST = 400; // failure, API rejected request
-  static const int UNAUTHORIZED = 401; // failure, user is not authorised
+  static const int UNAUTORISED = 401; // failure, user is not authorised
   static const int FORBIDDEN = 403; //  failure, API rejected request
   static const int INTERNAL_SERVER_ERROR = 500; // failure, crash in server side
   static const int NOT_FOUND = 404; // failure, not found
@@ -118,7 +120,7 @@ class ResponseMessage {
       "success"; // success with no data (no content)
   static const String BAD_REQUEST =
       "Bad request, Try again later"; // failure, API rejected request
-  static const String UNAUTHORIZED =
+  static const String UNAUTORISED =
       "User is unauthorised, Try again later"; // failure, user is not authorised
   static const String FORBIDDEN =
       "Forbidden request, Try again later"; //  failure, API rejected request

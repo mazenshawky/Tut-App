@@ -2,7 +2,7 @@ import 'package:advanced_app/data/network/app_api.dart';
 import 'package:advanced_app/data/network/requests.dart';
 import 'package:advanced_app/data/response/responses.dart';
 
-abstract class RemoteDataSource{
+abstract class RemoteDataSource {
   Future<AuthenticationResponse> login(LoginRequest loginRequest);
 
   Future<AuthenticationResponse> register(RegisterRequest registerRequest);
@@ -10,7 +10,7 @@ abstract class RemoteDataSource{
   Future<ForgotPasswordResponse> forgotPassword(String email);
 }
 
-class RemoteDataSourceImpl implements RemoteDataSource{
+class RemoteDataSourceImpl implements RemoteDataSource {
   final AppServiceClient _appServiceClient;
 
   RemoteDataSourceImpl(this._appServiceClient);
@@ -22,18 +22,19 @@ class RemoteDataSourceImpl implements RemoteDataSource{
   }
 
   @override
-  Future<ForgotPasswordResponse> forgotPassword(String email) async{
+  Future<ForgotPasswordResponse> forgotPassword(String email) async {
     return await _appServiceClient.forgotPassword(email);
   }
 
   @override
-  Future<AuthenticationResponse> register(RegisterRequest registerRequest) async{
+  Future<AuthenticationResponse> register(
+      RegisterRequest registerRequest) async {
     return await _appServiceClient.register(
-      registerRequest.userName,
-      registerRequest.countryMobileCode,
-      registerRequest.mobileNumber,
-      registerRequest.email,
-      registerRequest.password,
-      "");
+        registerRequest.userName,
+        registerRequest.countryMobileCode,
+        registerRequest.mobileNumber,
+        registerRequest.email,
+        registerRequest.password,
+        "");
   }
 }

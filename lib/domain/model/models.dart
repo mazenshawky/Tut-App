@@ -1,5 +1,7 @@
-// onBoarding models
-class SliderObject{
+// onboarding models
+import 'package:advanced_app/app/extensions.dart';
+
+class SliderObject {
   String title;
   String subTitle;
   String image;
@@ -7,7 +9,7 @@ class SliderObject{
   SliderObject(this.title, this.subTitle, this.image);
 }
 
-class SliderViewObject{
+class SliderViewObject {
   SliderObject sliderObject;
   int numOfSlides;
   int currentIndex;
@@ -17,7 +19,7 @@ class SliderViewObject{
 
 // login models
 
-class Customer{
+class Customer {
   String id;
   String name;
   int numOfNotifications;
@@ -25,7 +27,7 @@ class Customer{
   Customer(this.id, this.name, this.numOfNotifications);
 }
 
-class Contacts{
+class Contacts {
   String phone;
   String email;
   String link;
@@ -33,7 +35,7 @@ class Contacts{
   Contacts(this.phone, this.email, this.link);
 }
 
-class Authentication{
+class Authentication {
   Customer? customer;
   Contacts? contacts;
 
