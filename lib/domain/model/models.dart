@@ -41,3 +41,42 @@ class Authentication {
 
   Authentication(this.customer, this.contacts);
 }
+
+class Service{
+  String id;
+  String title;
+  String data;
+
+  Service(this.id, this.title, this.data);
+}
+
+class Store{
+  String id;
+  String title;
+  String data;
+
+  Store(this.id, this.title, this.data);
+}
+
+class BannerAd{
+  String id;
+  String title;
+  String data;
+  String link;
+
+  BannerAd(this.id, this.title, this.data, this.link);
+}
+
+class HomeData{
+  List<Service> services;
+  List<BannerAd> banners;
+  List<Store> stores;
+
+  HomeData(this.services, this.banners, this.stores);
+}
+
+class HomeObject{
+  HomeData? data;
+
+  HomeObject(this.data);
+}
