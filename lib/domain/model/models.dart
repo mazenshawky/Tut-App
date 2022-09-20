@@ -43,28 +43,28 @@ class Authentication {
 }
 
 class Service{
-  String id;
+  int id;
   String title;
-  String data;
+  String image;
 
-  Service(this.id, this.title, this.data);
+  Service(this.id, this.title, this.image);
 }
 
 class Store{
-  String id;
+  int id;
   String title;
-  String data;
+  String image;
 
-  Store(this.id, this.title, this.data);
+  Store(this.id, this.title, this.image);
 }
 
 class BannerAd{
-  String id;
-  String title;
-  String data;
+  int id;
   String link;
+  String title;
+  String image;
 
-  BannerAd(this.id, this.title, this.data, this.link);
+  BannerAd(this.id, this.link, this.title, this.image);
 }
 
 class HomeData{
