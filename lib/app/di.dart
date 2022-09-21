@@ -9,10 +9,12 @@ import 'package:advanced_app/domain/repository/repository.dart';
 import 'package:advanced_app/domain/usecase/forgot_password_usecase.dart';
 import 'package:advanced_app/domain/usecase/login_usecase.dart';
 import 'package:advanced_app/domain/usecase/register_usecase.dart';
+import 'package:advanced_app/domain/usecase/store_details_usecase.dart';
 import 'package:advanced_app/presentation/forgot_password/viewmodel/forgot_password_viewmodel.dart';
 import 'package:advanced_app/presentation/login/viewmodel/login_viewmodel.dart';
 import 'package:advanced_app/presentation/main/pages/home/viewmodel/home_viewmodel.dart';
 import 'package:advanced_app/presentation/register/viewmodel/register_view_model.dart';
+import 'package:advanced_app/presentation/store_details/viewmodel/store_details_viewmodel.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
@@ -84,5 +86,12 @@ initHomeModule() {
   if(!GetIt.I.isRegistered<HomeUseCase>()){
     instance.registerFactory<HomeUseCase>(() => HomeUseCase(instance()));
     instance.registerFactory<HomeViewModel>(() => HomeViewModel(instance()));
+  }
+}
+
+initStoreDetailsModule() {
+  if(!GetIt.I.isRegistered<StoreDetailsUseCase>()){
+    instance.registerFactory<StoreDetailsUseCase>(() => StoreDetailsUseCase(instance()));
+    instance.registerFactory<StoreDetailsViewModel>(() => StoreDetailsViewModel(instance()));
   }
 }

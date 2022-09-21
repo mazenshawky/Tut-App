@@ -12,7 +12,7 @@ class HomeViewModel extends BaseViewModel
     with HomeViewModelInput, HomeViewModelOutput{
   final StreamController _homeViewStreamController = BehaviorSubject<HomeViewObject>();
 
-  HomeUseCase _homeUseCase;
+  final HomeUseCase _homeUseCase;
 
   HomeViewModel(this._homeUseCase);
 
