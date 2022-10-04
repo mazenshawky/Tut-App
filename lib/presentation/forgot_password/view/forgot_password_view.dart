@@ -7,6 +7,7 @@ import 'package:advanced_app/presentation/resources/color_manager.dart';
 import 'package:advanced_app/presentation/resources/routes_manager.dart';
 import 'package:advanced_app/presentation/resources/strings_manager.dart';
 import 'package:advanced_app/presentation/resources/values_manager.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
@@ -74,11 +75,11 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                         keyboardType: TextInputType.emailAddress,
                         controller: _emailController,
                         decoration: InputDecoration(
-                          hintText: AppStrings.emailHint,
-                          labelText: AppStrings.emailHint,
+                          hintText: AppStrings.emailHint.tr(),
+                          labelText: AppStrings.emailHint.tr(),
                           errorText: (snapshot.data ?? true)
                               ? null
-                              : AppStrings.invalidEmail,
+                              : AppStrings.invalidEmail.tr(),
                         ),
                       );
                     }),
@@ -102,7 +103,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                             _viewModel.forgotPassword();
                           }
                               : null,
-                          child: const Text(AppStrings.resetPassword),
+                          child: Text(AppStrings.resetPassword.tr()),
                         ),
                       );
                     }),

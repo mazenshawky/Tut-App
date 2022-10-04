@@ -5,6 +5,7 @@ import 'package:advanced_app/presentation/resources/color_manager.dart';
 import 'package:advanced_app/presentation/resources/strings_manager.dart';
 import 'package:advanced_app/presentation/resources/values_manager.dart';
 import 'package:advanced_app/presentation/store_details/viewmodel/store_details_viewmodel.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class StoreDetailsView extends StatefulWidget {
@@ -46,7 +47,7 @@ class _StoreDetailsViewState extends State<StoreDetailsView> {
     return Scaffold(
       backgroundColor: ColorManager.white,
       appBar: AppBar(
-        title: const Text(AppStrings.storeDetails),
+        title: Text(AppStrings.storeDetails.tr()),
         elevation: AppSize.s0,
         iconTheme: IconThemeData(
           //back button
@@ -64,11 +65,11 @@ class _StoreDetailsViewState extends State<StoreDetailsView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _getImageWidget(snapshot.data!.image),
-                  _getSection(AppStrings.details),
+                  _getSection(AppStrings.details.tr()),
                   _getText(snapshot.data!.details),
-                  _getSection(AppStrings.services),
+                  _getSection(AppStrings.services.tr()),
                   _getText(snapshot.data!.services),
-                  _getSection(AppStrings.aboutStore),
+                  _getSection(AppStrings.about.tr()),
                   _getText(snapshot.data!.about),
                 ],
               ),

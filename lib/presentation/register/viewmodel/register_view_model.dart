@@ -8,6 +8,7 @@ import 'package:advanced_app/presentation/common/freezed_data_classes.dart';
 import 'package:advanced_app/presentation/common/state_renderer/state_renderer.dart';
 import 'package:advanced_app/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:advanced_app/presentation/resources/strings_manager.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class RegisterViewModel extends BaseViewModel
     with RegisterViewModelInput, RegisterViewModelOutput {
@@ -177,7 +178,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   Stream<String?> get outputErrorUserName => outputIsUserNameValid
-      .map((isUserName) => isUserName ? null : AppStrings.userNameInvalid);
+      .map((isUserName) => isUserName ? null : AppStrings.userNameInvalid.tr());
 
   @override
   Stream<bool> get outputIsEmailValid =>
@@ -185,7 +186,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   Stream<String?> get outputErrorEmail => outputIsEmailValid
-      .map((isEmailValid) => isEmailValid ? null : AppStrings.invalidEmail);
+      .map((isEmailValid) => isEmailValid ? null : AppStrings.invalidEmail.tr());
 
   @override
   Stream<bool> get outputIsMobileNumberValid =>
@@ -195,7 +196,7 @@ class RegisterViewModel extends BaseViewModel
   @override
   Stream<String?> get outputErrorMobileNumber =>
       outputIsMobileNumberValid.map((isMobileNumberValid) =>
-          isMobileNumberValid ? null : AppStrings.mobileNumberInvalid);
+          isMobileNumberValid ? null : AppStrings.mobileNumberInvalid.tr());
 
   @override
   Stream<bool> get outputIsPasswordValid => passwordStreamController.stream
@@ -203,7 +204,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   Stream<String?> get outputErrorPassword => outputIsPasswordValid.map(
-      (isPasswordValid) => isPasswordValid ? null : AppStrings.passwordInvalid);
+      (isPasswordValid) => isPasswordValid ? null : AppStrings.passwordInvalid.tr());
 
   @override
   Stream<File> get outputProfilePicture =>
